@@ -28,7 +28,6 @@
 #include "DistrhoUI.hpp"
 
 #include "ImageKnob.hpp"
-#include "ImageSlider.hpp"
 #include "ImageSwitch.hpp"
 
 #include "DistrhoArtworkSoulForce.hpp"
