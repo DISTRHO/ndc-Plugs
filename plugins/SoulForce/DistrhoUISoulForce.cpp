@@ -35,7 +35,8 @@ DistrhoUISoulForce::DistrhoUISoulForce()
     : UI(Art::backgroundWidth, Art::backgroundHeight),
       fImgBackground(Art::backgroundData, Art::backgroundWidth, Art::backgroundHeight, GL_BGR),
       fImgLedOff(Art::led_offData, Art::led_offWidth, Art::led_offHeight, GL_BGR),
-      fImgLedOn(Art::led_onData, Art::led_onWidth, Art::led_onHeight, GL_BGR)
+      fImgLedOn(Art::led_onData, Art::led_onWidth, Art::led_onHeight, GL_BGR),
+      fFootDown(true)
 {
     // knobs
     fKnobShape = new ImageKnob(this,
@@ -64,12 +65,14 @@ DistrhoUISoulForce::DistrhoUISoulForce()
     fSwitchSource->setAbsolutePos(116, 191);
     fSwitchSource->setCallback(this);
 
-    fSwitchFoot = new ImageSwitch(this,
+    // buttons
+    fButtonFoot = new ImageButton(this,
+                      Image(Art::button_upData, Art::button_upWidth, Art::button_upHeight, GL_BGR),
                       Image(Art::button_upData, Art::button_upWidth, Art::button_upHeight, GL_BGR),
                       Image(Art::button_downData, Art::button_downWidth, Art::button_downHeight, GL_BGR));
-    fSwitchFoot->setId(DistrhoPluginSoulForce::kParameterFootswitch);
-    fSwitchFoot->setAbsolutePos(125, 282);
-    fSwitchFoot->setCallback(this);
+    fButtonFoot->setId(DistrhoPluginSoulForce::kParameterFootswitch);
+    fButtonFoot->setAbsolutePos(125, 282);
+    fButtonFoot->setCallback(this);
 
     // set initial values
     d_programChanged(0);
@@ -92,7 +95,11 @@ void DistrhoUISoulForce::d_parameterChanged(uint32_t index, float value)
         fSwitchSource->setDown(value > 0.5f);
         break;
     case DistrhoPluginSoulForce::kParameterFootswitch:
-        fSwitchFoot->setDown(value > 0.5f);
+        if (fFootDown != (value > 0.5f))
+        {
+            fFootDown = !fFootDown;
+            repaint();
+        }
         break;
     }
 }
@@ -105,56 +112,54 @@ void DistrhoUISoulForce::d_programChanged(uint32_t index)
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 1:
         fKnobShape->setValue(0.4f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 2:
         fKnobShape->setValue(1.0f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 3:
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 4:
         fKnobShape->setValue(0.0f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 5:
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(true);
-        fSwitchFoot->setDown(true);
         break;
     case 6:
         fKnobShape->setValue(0.0f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(true);
-        fSwitchFoot->setDown(true);
         break;
     case 7:
         fKnobShape->setValue(0.3f);
         fKnobFBack->setValue(0.5f);
         fSwitchSource->setDown(false);
-        fSwitchFoot->setDown(true);
         break;
     case 8:
         fKnobShape->setValue(0.3f);
         fKnobFBack->setValue(0.5f);
         fSwitchSource->setDown(true);
-        fSwitchFoot->setDown(true);
         break;
+    }
+
+    // always true
+    if (! fFootDown)
+    {
+        fFootDown = true;
+        repaint();
     }
 }
 
@@ -176,9 +181,25 @@ void DistrhoUISoulForce::imageKnobValueChanged(ImageKnob* knob, float value)
     d_setParameterValue(knob->getId(), value);
 }
 
-void DistrhoUISoulForce::imageSwitchClicked(ImageSwitch* button, bool down)
+void DistrhoUISoulForce::imageButtonClicked(ImageButton* imageButton, int button)
 {
-    const uint buttonId(button->getId());
+    const uint buttonId(imageButton->getId());
+
+    if (buttonId != DistrhoPluginSoulForce::kParameterFootswitch)
+        return;
+
+    fFootDown = !fFootDown;
+
+    d_editParameter(buttonId, true);
+    d_setParameterValue(buttonId, fFootDown ? 1.0f : 0.0f);
+    d_editParameter(buttonId, false);
+
+    repaint();
+}
+
+void DistrhoUISoulForce::imageSwitchClicked(ImageSwitch* imageSwitch, bool down)
+{
+    const uint buttonId(imageSwitch->getId());
 
     d_editParameter(buttonId, true);
     d_setParameterValue(buttonId, down ? 1.0f : 0.0f);
@@ -189,7 +210,7 @@ void DistrhoUISoulForce::onDisplay()
 {
     fImgBackground.draw();
 
-    if (fSwitchFoot->isDown())
+    if (fFootDown)
         fImgLedOn.drawAt(123, 240);
     else
         fImgLedOff.drawAt(123, 240);

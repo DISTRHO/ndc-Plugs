@@ -27,12 +27,14 @@
 
 #include "DistrhoUI.hpp"
 
+#include "ImageButton.hpp"
 #include "ImageKnob.hpp"
 #include "ImageSwitch.hpp"
 
 #include "DistrhoArtworkSoulForce.hpp"
 
 using DGL::Image;
+using DGL::ImageButton;
 using DGL::ImageKnob;
 using DGL::ImageSwitch;
 
@@ -41,6 +43,7 @@ START_NAMESPACE_DISTRHO
 // -----------------------------------------------------------------------
 
 class DistrhoUISoulForce : public UI,
+                           public ImageButton::Callback,
                            public ImageKnob::Callback,
                            public ImageSwitch::Callback
 {
@@ -61,14 +64,17 @@ protected:
     void imageKnobDragFinished(ImageKnob* knob) override;
     void imageKnobValueChanged(ImageKnob* knob, float value) override;
 
-    void imageSwitchClicked(ImageSwitch* imageButton, bool down) override;
+    void imageButtonClicked(ImageButton* imageButton, int button) override;
+    void imageSwitchClicked(ImageSwitch* imageSwitch, bool down) override;
 
     void onDisplay() override;
 
 private:
     Image fImgBackground, fImgLedOff, fImgLedOn;
     ScopedPointer<ImageKnob> fKnobShape, fKnobFBack;
-    ScopedPointer<ImageSwitch> fSwitchSource, fSwitchFoot;
+    ScopedPointer<ImageSwitch> fSwitchSource;
+    ScopedPointer<ImageButton> fButtonFoot;
+    bool fFootDown;
 
     DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoUISoulForce)
 };
