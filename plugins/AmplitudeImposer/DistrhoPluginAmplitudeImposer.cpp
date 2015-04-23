@@ -48,6 +48,48 @@ DistrhoPluginAmplitudeImposer::DistrhoPluginAmplitudeImposer()
 // -----------------------------------------------------------------------
 // Init
 
+void DistrhoPluginAmplitudeImposer::d_initAudioPort(bool input, uint32_t index, AudioPort& port)
+{
+    port.hints = 0x0;
+
+    if (input)
+    {
+        switch (index)
+        {
+        case 0:
+            port.name   = "Input Left (Amp Env)";
+            port.symbol = "in_left_amp";
+            break;
+        case 1:
+            port.name   = "Input Right (Amp Env)";
+            port.symbol = "in_left_amp";
+            break;
+        case 2:
+            port.name   = "Input Left (Audio)";
+            port.symbol = "in_left_audio";
+            break;
+        case 3:
+            port.name   = "Input Right (Audio)";
+            port.symbol = "in_right_audio";
+            break;
+        }
+    }
+    else
+    {
+        switch (index)
+        {
+        case 0:
+            port.name   = "Output Left";
+            port.symbol = "out_left";
+            break;
+        case 1:
+            port.name   = "Output Right";
+            port.symbol = "out_left";
+            break;
+        }
+    }
+}
+
 void DistrhoPluginAmplitudeImposer::d_initParameter(uint32_t index, Parameter& parameter)
 {
     parameter.hints      = kParameterIsAutomable;
