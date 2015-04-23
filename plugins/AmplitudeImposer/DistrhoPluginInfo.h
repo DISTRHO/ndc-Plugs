@@ -1,6 +1,6 @@
 /*
- * DISTRHO SoulForce, a DPF'ied SoulForce.
- * Copyright (C) 2006 Niall Moody
+ * DISTRHO AmplitudeImposer, a DPF'ied AmplitudeImposer.
+ * Copyright (C) 2004 Niall Moody
  * Copyright (C) 2015 Filipe Coelho <falktx@falktx.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -25,12 +25,12 @@
 #ifndef DISTRHO_PLUGIN_INFO_H_INCLUDED
 #define DISTRHO_PLUGIN_INFO_H_INCLUDED
 
-#define DISTRHO_PLUGIN_NAME "Soul Force"
-#define DISTRHO_PLUGIN_URI  "http://www.niallmoody.com/ndcplugs/soulforce.htm"
+#define DISTRHO_PLUGIN_NAME "Amplitude Imposer"
+#define DISTRHO_PLUGIN_URI  "http://www.niallmoody.com/ndcplugs/ampimposer.htm"
 
 #define DISTRHO_PLUGIN_HAS_UI        1
 #define DISTRHO_PLUGIN_IS_RT_SAFE    1
-#define DISTRHO_PLUGIN_NUM_INPUTS    2
+#define DISTRHO_PLUGIN_NUM_INPUTS    4
 #define DISTRHO_PLUGIN_NUM_OUTPUTS   2
 #define DISTRHO_PLUGIN_WANT_PROGRAMS 1
 

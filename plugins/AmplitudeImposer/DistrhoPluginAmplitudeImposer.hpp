@@ -1,6 +1,6 @@
 /*
- * DISTRHO SoulForce, a DPF'ied SoulForce.
- * Copyright (C) 2006 Niall Moody
+ * DISTRHO AmplitudeImposer, a DPF'ied AmplitudeImposer.
+ * Copyright (C) 2004 Niall Moody
  * Copyright (C) 2015 Filipe Coelho <falktx@falktx.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,18 +31,16 @@ START_NAMESPACE_DISTRHO
 
 // -----------------------------------------------------------------------
 
-class DistrhoPluginSoulForce : public Plugin
+class DistrhoPluginAmplitudeImposer : public Plugin
 {
 public:
     enum Parameters {
-        kParameterShape,
-        kParameterFeedback,
-        kParameterSource,
-        kParameterFootswitch,
+        kParameterDepth,
+        kParameterThreshold,
         kParameterCount
     };
 
-    DistrhoPluginSoulForce();
+    DistrhoPluginAmplitudeImposer();
 
 protected:
     // -------------------------------------------------------------------
@@ -50,7 +48,7 @@ protected:
 
     const char* d_getLabel() const noexcept override
     {
-        return "SoulForce";
+        return "AmplitudeImposer";
     }
 
     const char* d_getMaker() const noexcept override
@@ -70,7 +68,7 @@ protected:
 
     int64_t d_getUniqueId() const noexcept override
     {
-        return d_cconst('S', 'l', 'F', 'r');
+        return d_cconst('A', 'm', 'I', 'm');
     }
 
     // -------------------------------------------------------------------
@@ -89,24 +87,20 @@ protected:
     // -------------------------------------------------------------------
     // Process
 
+    void d_activate() override;
     void d_run(const float** inputs, float** outputs, uint32_t frames) override;
 
     // -------------------------------------------------------------------
 
 private:
-    /// Array of our plugin's parameters.
-    float parameters[kParameterCount];
+    float fDepth;
+    float fThreshold;
 
-    /// Waveshaper coefficient.
-    float coeff;
-    /// Current wave value for the feedback.
-    float wave;
-    /// Envelope value for the feedback.
-    float env;
-    /// Footswitch envelope.
-    float footEnv;
+    float ampEnvelope_l, ampEnvelope_r;
+    float audioEnvelope_l, audioEnvelope_r;
+    float envDecay;
 
-    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoPluginSoulForce)
+    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoPluginAmplitudeImposer)
 };
 
 // -----------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /*
- * DISTRHO SoulForce, a DPF'ied SoulForce.
- * Copyright (C) 2006 Niall Moody
+ * DISTRHO AmplitudeImposer, a DPF'ied AmplitudeImposer.
+ * Copyright (C) 2004 Niall Moody
  * Copyright (C) 2015 Filipe Coelho <falktx@falktx.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -27,28 +27,22 @@
 
 #include "DistrhoUI.hpp"
 
-#include "ImageButton.hpp"
-#include "ImageKnob.hpp"
-#include "ImageSwitch.hpp"
+#include "ImageSlider.hpp"
 
-#include "DistrhoArtworkSoulForce.hpp"
+#include "DistrhoArtworkAmplitudeImposer.hpp"
 
 using DGL::Image;
-using DGL::ImageButton;
-using DGL::ImageKnob;
-using DGL::ImageSwitch;
+using DGL::ImageSlider;
 
 START_NAMESPACE_DISTRHO
 
 // -----------------------------------------------------------------------
 
-class DistrhoUISoulForce : public UI,
-                           public ImageButton::Callback,
-                           public ImageKnob::Callback,
-                           public ImageSwitch::Callback
+class DistrhoUIAmplitudeImposer : public UI,
+                                  public ImageSlider::Callback
 {
 public:
-    DistrhoUISoulForce();
+    DistrhoUIAmplitudeImposer();
 
 protected:
     // -------------------------------------------------------------------
@@ -60,23 +54,17 @@ protected:
     // -------------------------------------------------------------------
     // Widget Callbacks
 
-    void imageKnobDragStarted(ImageKnob* knob) override;
-    void imageKnobDragFinished(ImageKnob* knob) override;
-    void imageKnobValueChanged(ImageKnob* knob, float value) override;
-
-    void imageButtonClicked(ImageButton* imageButton, int button) override;
-    void imageSwitchClicked(ImageSwitch* imageSwitch, bool down) override;
+    void imageSliderDragStarted(ImageSlider* slider) override;
+    void imageSliderDragFinished(ImageSlider* slider) override;
+    void imageSliderValueChanged(ImageSlider* slider, float value) override;
 
     void onDisplay() override;
 
 private:
-    Image fImgBackground, fImgLedOff, fImgLedOn;
-    ScopedPointer<ImageKnob> fKnobShape, fKnobFBack;
-    ScopedPointer<ImageSwitch> fSwitchSource;
-    ScopedPointer<ImageButton> fButtonFoot;
-    bool fFootDown;
+    Image fImgBackground;
+    ScopedPointer<ImageSlider> fSliderDepth, fSliderThres;
 
-    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoUISoulForce)
+    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DistrhoUIAmplitudeImposer)
 };
 
 // -----------------------------------------------------------------------

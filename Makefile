@@ -16,6 +16,7 @@ ifeq ($(HAVE_DGL),true)
 endif
 
 plugins: libs
+	$(MAKE) all -C plugins/AmplitudeImposer
 	$(MAKE) all -C plugins/SoulForce
 
 gen: plugins dpf/utils/lv2_ttl_generator
@@ -34,6 +35,7 @@ ifeq ($(HAVE_DGL),true)
 	$(MAKE) clean -C dpf/dgl
 endif
 	$(MAKE) clean -C dpf/utils/lv2-ttl-generator
+	$(MAKE) clean -C plugins/AmplitudeImposer
 	$(MAKE) clean -C plugins/SoulForce
 
 # --------------------------------------------------------------

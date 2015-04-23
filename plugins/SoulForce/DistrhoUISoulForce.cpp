@@ -1,6 +1,6 @@
 /*
  * DISTRHO SoulForce, a DPF'ied SoulForce.
- * Copyright (c) 2006 Niall Moody
+ * Copyright (C) 2006 Niall Moody
  * Copyright (C) 2015 Filipe Coelho <falktx@falktx.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -181,7 +181,7 @@ void DistrhoUISoulForce::imageKnobValueChanged(ImageKnob* knob, float value)
     d_setParameterValue(knob->getId(), value);
 }
 
-void DistrhoUISoulForce::imageButtonClicked(ImageButton* imageButton, int button)
+void DistrhoUISoulForce::imageButtonClicked(ImageButton* imageButton, int)
 {
     const uint buttonId(imageButton->getId());
 
