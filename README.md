@@ -5,6 +5,7 @@ See [http://www.niallmoody.com/ndcplugs/plugins.htm](http://www.niallmoody.com/n
 
 This collection currently includes:<br/>
  - Amplitude Imposer
+ - Cycle Shifter
  - Soul Force
 
 ## Screenshots
