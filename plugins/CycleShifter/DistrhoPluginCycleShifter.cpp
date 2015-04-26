@@ -43,7 +43,7 @@ DistrhoPluginCycleShifter::DistrhoPluginCycleShifter()
 // -----------------------------------------------------------------------
 // Init
 
-void DistrhoPluginCycleShifter::d_initParameter(uint32_t index, Parameter& parameter)
+void DistrhoPluginCycleShifter::initParameter(uint32_t index, Parameter& parameter)
 {
     parameter.hints      = kParameterIsAutomable;
     parameter.ranges.min = 0.0f;
@@ -64,7 +64,7 @@ void DistrhoPluginCycleShifter::d_initParameter(uint32_t index, Parameter& param
     }
 }
 
-void DistrhoPluginCycleShifter::d_initProgramName(uint32_t index, d_string& programName)
+void DistrhoPluginCycleShifter::initProgramName(uint32_t index, String& programName)
 {
     switch(index)
     {
@@ -77,7 +77,7 @@ void DistrhoPluginCycleShifter::d_initProgramName(uint32_t index, d_string& prog
 // -----------------------------------------------------------------------
 // Internal data
 
-float DistrhoPluginCycleShifter::d_getParameterValue(uint32_t index) const
+float DistrhoPluginCycleShifter::getParameterValue(uint32_t index) const
 {
     switch(index)
     {
@@ -90,7 +90,7 @@ float DistrhoPluginCycleShifter::d_getParameterValue(uint32_t index) const
     }
 }
 
-void DistrhoPluginCycleShifter::d_setParameterValue(uint32_t index, float value)
+void DistrhoPluginCycleShifter::setParameterValue(uint32_t index, float value)
 {
     switch(index)
     {
@@ -103,7 +103,7 @@ void DistrhoPluginCycleShifter::d_setParameterValue(uint32_t index, float value)
     }
 }
 
-void DistrhoPluginCycleShifter::d_setProgram(uint32_t index)
+void DistrhoPluginCycleShifter::loadProgram(uint32_t index)
 {
     switch(index)
     {
@@ -117,7 +117,7 @@ void DistrhoPluginCycleShifter::d_setProgram(uint32_t index)
 // -----------------------------------------------------------------------
 // Process
 
-void DistrhoPluginCycleShifter::d_activate()
+void DistrhoPluginCycleShifter::activate()
 {
     std::memset(CycleBuffer, 0, sizeof(float)*BUFFER_SIZE);
     OutIndex = 0;
@@ -126,7 +126,7 @@ void DistrhoPluginCycleShifter::d_activate()
     EnvOld = 0.0f;
 }
 
-void DistrhoPluginCycleShifter::d_run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPluginCycleShifter::run(const float** inputs, float** outputs, uint32_t frames)
 {
     const float* in  =  inputs[0];
     /**/  float* out = outputs[0];

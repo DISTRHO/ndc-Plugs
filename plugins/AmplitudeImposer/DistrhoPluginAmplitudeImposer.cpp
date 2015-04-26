@@ -48,7 +48,7 @@ DistrhoPluginAmplitudeImposer::DistrhoPluginAmplitudeImposer()
 // -----------------------------------------------------------------------
 // Init
 
-void DistrhoPluginAmplitudeImposer::d_initAudioPort(bool input, uint32_t index, AudioPort& port)
+void DistrhoPluginAmplitudeImposer::initAudioPort(bool input, uint32_t index, AudioPort& port)
 {
     port.hints = 0x0;
 
@@ -90,7 +90,7 @@ void DistrhoPluginAmplitudeImposer::d_initAudioPort(bool input, uint32_t index, 
     }
 }
 
-void DistrhoPluginAmplitudeImposer::d_initParameter(uint32_t index, Parameter& parameter)
+void DistrhoPluginAmplitudeImposer::initParameter(uint32_t index, Parameter& parameter)
 {
     parameter.hints      = kParameterIsAutomable;
     parameter.ranges.min = 0.0f;
@@ -111,7 +111,7 @@ void DistrhoPluginAmplitudeImposer::d_initParameter(uint32_t index, Parameter& p
     }
 }
 
-void DistrhoPluginAmplitudeImposer::d_initProgramName(uint32_t index, d_string& programName)
+void DistrhoPluginAmplitudeImposer::initProgramName(uint32_t index, String& programName)
 {
     switch(index)
     {
@@ -124,7 +124,7 @@ void DistrhoPluginAmplitudeImposer::d_initProgramName(uint32_t index, d_string& 
 // -----------------------------------------------------------------------
 // Internal data
 
-float DistrhoPluginAmplitudeImposer::d_getParameterValue(uint32_t index) const
+float DistrhoPluginAmplitudeImposer::getParameterValue(uint32_t index) const
 {
     switch(index)
     {
@@ -137,7 +137,7 @@ float DistrhoPluginAmplitudeImposer::d_getParameterValue(uint32_t index) const
     }
 }
 
-void DistrhoPluginAmplitudeImposer::d_setParameterValue(uint32_t index, float value)
+void DistrhoPluginAmplitudeImposer::setParameterValue(uint32_t index, float value)
 {
     switch(index)
     {
@@ -150,7 +150,7 @@ void DistrhoPluginAmplitudeImposer::d_setParameterValue(uint32_t index, float va
     }
 }
 
-void DistrhoPluginAmplitudeImposer::d_setProgram(uint32_t index)
+void DistrhoPluginAmplitudeImposer::loadProgram(uint32_t index)
 {
     switch(index)
     {
@@ -164,7 +164,7 @@ void DistrhoPluginAmplitudeImposer::d_setProgram(uint32_t index)
 // -----------------------------------------------------------------------
 // Process
 
-void DistrhoPluginAmplitudeImposer::d_activate()
+void DistrhoPluginAmplitudeImposer::activate()
 {
     ampEnvelope_l = 0.0f;
     ampEnvelope_r = 0.0f;
@@ -173,7 +173,7 @@ void DistrhoPluginAmplitudeImposer::d_activate()
     envDecay = 0.0001f;
 }
 
-void DistrhoPluginAmplitudeImposer::d_run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPluginAmplitudeImposer::run(const float** inputs, float** outputs, uint32_t frames)
 {
     const float* const in1  =  inputs[0];
     const float* const in2  =  inputs[1];

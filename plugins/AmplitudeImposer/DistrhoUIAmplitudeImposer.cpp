@@ -53,13 +53,13 @@ DistrhoUIAmplitudeImposer::DistrhoUIAmplitudeImposer()
     fSliderThres->setCallback(this);
 
     // set initial values
-    d_programChanged(0);
+    programLoaded(0);
 }
 
 // -----------------------------------------------------------------------
 // DSP Callbacks
 
-void DistrhoUIAmplitudeImposer::d_parameterChanged(uint32_t index, float value)
+void DistrhoUIAmplitudeImposer::parameterChanged(uint32_t index, float value)
 {
     switch (index)
     {
@@ -72,7 +72,7 @@ void DistrhoUIAmplitudeImposer::d_parameterChanged(uint32_t index, float value)
     }
 }
 
-void DistrhoUIAmplitudeImposer::d_programChanged(uint32_t index)
+void DistrhoUIAmplitudeImposer::programLoaded(uint32_t index)
 {
     switch(index)
     {
@@ -88,17 +88,17 @@ void DistrhoUIAmplitudeImposer::d_programChanged(uint32_t index)
 
 void DistrhoUIAmplitudeImposer::imageSliderDragStarted(ImageSlider* slider)
 {
-    d_editParameter(slider->getId(), true);
+    editParameter(slider->getId(), true);
 }
 
 void DistrhoUIAmplitudeImposer::imageSliderDragFinished(ImageSlider* slider)
 {
-    d_editParameter(slider->getId(), false);
+    editParameter(slider->getId(), false);
 }
 
 void DistrhoUIAmplitudeImposer::imageSliderValueChanged(ImageSlider* slider, float value)
 {
-    d_setParameterValue(slider->getId(), value);
+    setParameterValue(slider->getId(), value);
 }
 
 void DistrhoUIAmplitudeImposer::onDisplay()

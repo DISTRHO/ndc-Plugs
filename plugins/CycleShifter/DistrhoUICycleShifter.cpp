@@ -53,13 +53,13 @@ DistrhoUICycleShifter::DistrhoUICycleShifter()
     fSliderInputVol->setCallback(this);
 
     // set initial values
-    d_programChanged(0);
+    programLoaded(0);
 }
 
 // -----------------------------------------------------------------------
 // DSP Callbacks
 
-void DistrhoUICycleShifter::d_parameterChanged(uint32_t index, float value)
+void DistrhoUICycleShifter::parameterChanged(uint32_t index, float value)
 {
     switch (index)
     {
@@ -72,7 +72,7 @@ void DistrhoUICycleShifter::d_parameterChanged(uint32_t index, float value)
     }
 }
 
-void DistrhoUICycleShifter::d_programChanged(uint32_t index)
+void DistrhoUICycleShifter::programLoaded(uint32_t index)
 {
     switch(index)
     {
@@ -88,17 +88,17 @@ void DistrhoUICycleShifter::d_programChanged(uint32_t index)
 
 void DistrhoUICycleShifter::imageSliderDragStarted(ImageSlider* slider)
 {
-    d_editParameter(slider->getId(), true);
+    editParameter(slider->getId(), true);
 }
 
 void DistrhoUICycleShifter::imageSliderDragFinished(ImageSlider* slider)
 {
-    d_editParameter(slider->getId(), false);
+    editParameter(slider->getId(), false);
 }
 
 void DistrhoUICycleShifter::imageSliderValueChanged(ImageSlider* slider, float value)
 {
-    d_setParameterValue(slider->getId(), value);
+    setParameterValue(slider->getId(), value);
 }
 
 void DistrhoUICycleShifter::onDisplay()

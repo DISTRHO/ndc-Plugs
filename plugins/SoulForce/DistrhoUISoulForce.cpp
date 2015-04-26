@@ -75,13 +75,13 @@ DistrhoUISoulForce::DistrhoUISoulForce()
     fButtonFoot->setCallback(this);
 
     // set initial values
-    d_programChanged(0);
+    programLoaded(0);
 }
 
 // -----------------------------------------------------------------------
 // DSP Callbacks
 
-void DistrhoUISoulForce::d_parameterChanged(uint32_t index, float value)
+void DistrhoUISoulForce::parameterChanged(uint32_t index, float value)
 {
     switch (index)
     {
@@ -104,7 +104,7 @@ void DistrhoUISoulForce::d_parameterChanged(uint32_t index, float value)
     }
 }
 
-void DistrhoUISoulForce::d_programChanged(uint32_t index)
+void DistrhoUISoulForce::programLoaded(uint32_t index)
 {
     switch(index)
     {
@@ -168,17 +168,17 @@ void DistrhoUISoulForce::d_programChanged(uint32_t index)
 
 void DistrhoUISoulForce::imageKnobDragStarted(ImageKnob* knob)
 {
-    d_editParameter(knob->getId(), true);
+    editParameter(knob->getId(), true);
 }
 
 void DistrhoUISoulForce::imageKnobDragFinished(ImageKnob* knob)
 {
-    d_editParameter(knob->getId(), false);
+    editParameter(knob->getId(), false);
 }
 
 void DistrhoUISoulForce::imageKnobValueChanged(ImageKnob* knob, float value)
 {
-    d_setParameterValue(knob->getId(), value);
+    setParameterValue(knob->getId(), value);
 }
 
 void DistrhoUISoulForce::imageButtonClicked(ImageButton* imageButton, int)
@@ -190,9 +190,9 @@ void DistrhoUISoulForce::imageButtonClicked(ImageButton* imageButton, int)
 
     fFootDown = !fFootDown;
 
-    d_editParameter(buttonId, true);
-    d_setParameterValue(buttonId, fFootDown ? 1.0f : 0.0f);
-    d_editParameter(buttonId, false);
+    editParameter(buttonId, true);
+    setParameterValue(buttonId, fFootDown ? 1.0f : 0.0f);
+    editParameter(buttonId, false);
 
     repaint();
 }
@@ -201,9 +201,9 @@ void DistrhoUISoulForce::imageSwitchClicked(ImageSwitch* imageSwitch, bool down)
 {
     const uint buttonId(imageSwitch->getId());
 
-    d_editParameter(buttonId, true);
-    d_setParameterValue(buttonId, down ? 1.0f : 0.0f);
-    d_editParameter(buttonId, false);
+    editParameter(buttonId, true);
+    setParameterValue(buttonId, down ? 1.0f : 0.0f);
+    editParameter(buttonId, false);
 }
 
 void DistrhoUISoulForce::onDisplay()

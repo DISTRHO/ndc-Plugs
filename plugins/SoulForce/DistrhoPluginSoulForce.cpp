@@ -36,13 +36,13 @@ DistrhoPluginSoulForce::DistrhoPluginSoulForce()
       footEnv(0.0f)
 {
     // set initial values
-    d_setProgram(0);
+    loadProgram(0);
 }
 
 // -----------------------------------------------------------------------
 // Init
 
-void DistrhoPluginSoulForce::d_initParameter(uint32_t index, Parameter& parameter)
+void DistrhoPluginSoulForce::initParameter(uint32_t index, Parameter& parameter)
 {
     parameter.hints      = kParameterIsAutomable;
     parameter.ranges.min = 0.0f;
@@ -75,7 +75,7 @@ void DistrhoPluginSoulForce::d_initParameter(uint32_t index, Parameter& paramete
     }
 }
 
-void DistrhoPluginSoulForce::d_initProgramName(uint32_t index, d_string& programName)
+void DistrhoPluginSoulForce::initProgramName(uint32_t index, String& programName)
 {
     switch(index)
     {
@@ -112,12 +112,12 @@ void DistrhoPluginSoulForce::d_initProgramName(uint32_t index, d_string& program
 // -----------------------------------------------------------------------
 // Internal data
 
-float DistrhoPluginSoulForce::d_getParameterValue(uint32_t index) const
+float DistrhoPluginSoulForce::getParameterValue(uint32_t index) const
 {
     return parameters[index];
 }
 
-void DistrhoPluginSoulForce::d_setParameterValue(uint32_t index, float value)
+void DistrhoPluginSoulForce::setParameterValue(uint32_t index, float value)
 {
     parameters[index] = value;
 
@@ -133,7 +133,7 @@ void DistrhoPluginSoulForce::d_setParameterValue(uint32_t index, float value)
     }
 }
 
-void DistrhoPluginSoulForce::d_setProgram(uint32_t index)
+void DistrhoPluginSoulForce::loadProgram(uint32_t index)
 {
     switch(index)
     {
@@ -197,7 +197,7 @@ void DistrhoPluginSoulForce::d_setProgram(uint32_t index)
 // -----------------------------------------------------------------------
 // Process
 
-void DistrhoPluginSoulForce::d_run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPluginSoulForce::run(const float** inputs, float** outputs, uint32_t frames)
 {
     float tempf, tempf2;
     float inLeft, inRight;
