@@ -74,13 +74,11 @@ void DistrhoUIAmplitudeImposer::parameterChanged(uint32_t index, float value)
 
 void DistrhoUIAmplitudeImposer::programLoaded(uint32_t index)
 {
-    switch(index)
-    {
-    case 0:
-        fSliderDepth->setValue(1.0f);
-        fSliderThres->setValue(0.5f);
-        break;
-    }
+    if (index != 0)
+        return;
+
+    fSliderDepth->setValue(1.0f);
+    fSliderThres->setValue(0.5f);
 }
 
 // -----------------------------------------------------------------------

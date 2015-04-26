@@ -29,7 +29,7 @@ START_NAMESPACE_DISTRHO
 // -----------------------------------------------------------------------
 
 DistrhoPluginSoulForce::DistrhoPluginSoulForce()
-    : Plugin(kParameterCount, 9, 0), // 9 programs, 0 states
+    : Plugin(kParameterCount, kProgramCount, 0),
       coeff(0.5f),
       wave(0.0f),
       env(0.0f),
@@ -79,31 +79,31 @@ void DistrhoPluginSoulForce::initProgramName(uint32_t index, String& programName
 {
     switch(index)
     {
-    case 0:
+    case kProgramDefault:
         programName = "Default";
         break;
-    case 1:
+    case kProgramStayDown:
         programName = "Stay Down";
         break;
-    case 2:
+    case kProgramLookingForTheWorld:
         programName = "Looking for the World";
         break;
-    case 3:
+    case kProgramGuerillaLove:
         programName = "Guerilla Love";
         break;
-    case 4:
+    case kProgramTumbleToThePower:
         programName = "Tumble to the Power";
         break;
-    case 5:
+    case kProgramDoYourselfFavour:
         programName = "Do Yourself a Favour";
         break;
-    case 6:
+    case kProgramPastIsPast:
         programName = "Past is Past";
         break;
-    case 7:
+    case kProgramYouAndOnlyYou:
         programName = "You and Only You";
         break;
-    case 8:
+    case kProgramSoulForce:
         programName = "Soul Force";
         break;
     }
@@ -137,55 +137,55 @@ void DistrhoPluginSoulForce::loadProgram(uint32_t index)
 {
     switch(index)
     {
-    case 0:
+    case kProgramDefault:
         parameters[kParameterShape]      = 0.5f;
         parameters[kParameterFeedback]   = 0.0f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 1:
+    case kProgramStayDown:
         parameters[kParameterShape]      = 0.4f;
         parameters[kParameterFeedback]   = 0.0f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 2:
+    case kProgramLookingForTheWorld:
         parameters[kParameterShape]      = 1.0f;
         parameters[kParameterFeedback]   = 0.0f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 3:
+    case kProgramGuerillaLove:
         parameters[kParameterShape]      = 0.5f;
         parameters[kParameterFeedback]   = 1.0f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 4:
+    case kProgramTumbleToThePower:
         parameters[kParameterShape]      = 0.0f;
         parameters[kParameterFeedback]   = 1.0f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 5:
+    case kProgramDoYourselfFavour:
         parameters[kParameterShape]      = 0.5f;
         parameters[kParameterFeedback]   = 1.0f;
         parameters[kParameterSource]     = 1.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 6:
+    case kProgramPastIsPast:
         parameters[kParameterShape]      = 0.0f;
         parameters[kParameterFeedback]   = 1.0f;
         parameters[kParameterSource]     = 1.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 7:
+    case kProgramYouAndOnlyYou:
         parameters[kParameterShape]      = 0.3f;
         parameters[kParameterFeedback]   = 0.5f;
         parameters[kParameterSource]     = 0.0f;
         parameters[kParameterFootswitch] = 1.0f;
         break;
-    case 8:
+    case kProgramSoulForce:
         parameters[kParameterShape]      = 0.3f;
         parameters[kParameterFeedback]   = 0.5f;
         parameters[kParameterSource]     = 1.0f;

@@ -108,47 +108,47 @@ void DistrhoUISoulForce::programLoaded(uint32_t index)
 {
     switch(index)
     {
-    case 0:
+    case DistrhoPluginSoulForce::kProgramDefault:
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
         break;
-    case 1:
+    case DistrhoPluginSoulForce::kProgramStayDown:
         fKnobShape->setValue(0.4f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
         break;
-    case 2:
+    case DistrhoPluginSoulForce::kProgramLookingForTheWorld:
         fKnobShape->setValue(1.0f);
         fKnobFBack->setValue(0.0f);
         fSwitchSource->setDown(false);
         break;
-    case 3:
+    case DistrhoPluginSoulForce::kProgramGuerillaLove:
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(false);
         break;
-    case 4:
+    case DistrhoPluginSoulForce::kProgramTumbleToThePower:
         fKnobShape->setValue(0.0f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(false);
         break;
-    case 5:
+    case DistrhoPluginSoulForce::kProgramDoYourselfFavour:
         fKnobShape->setValue(0.5f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(true);
         break;
-    case 6:
+    case DistrhoPluginSoulForce::kProgramPastIsPast:
         fKnobShape->setValue(0.0f);
         fKnobFBack->setValue(1.0f);
         fSwitchSource->setDown(true);
         break;
-    case 7:
+    case DistrhoPluginSoulForce::kProgramYouAndOnlyYou:
         fKnobShape->setValue(0.3f);
         fKnobFBack->setValue(0.5f);
         fSwitchSource->setDown(false);
         break;
-    case 8:
+    case DistrhoPluginSoulForce::kProgramSoulForce:
         fKnobShape->setValue(0.3f);
         fKnobFBack->setValue(0.5f);
         fSwitchSource->setDown(true);

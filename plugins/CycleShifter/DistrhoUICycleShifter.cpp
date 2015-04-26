@@ -74,13 +74,11 @@ void DistrhoUICycleShifter::parameterChanged(uint32_t index, float value)
 
 void DistrhoUICycleShifter::programLoaded(uint32_t index)
 {
-    switch(index)
-    {
-    case 0:
-        fSliderNewCycleVol->setValue(1.0f);
-        fSliderInputVol->setValue(1.0f);
-        break;
-    }
+    if (index != 0)
+        return;
+
+    fSliderNewCycleVol->setValue(1.0f);
+    fSliderInputVol->setValue(1.0f);
 }
 
 // -----------------------------------------------------------------------

@@ -42,6 +42,19 @@ public:
         kParameterCount
     };
 
+    enum Programs {
+        kProgramDefault,
+        kProgramStayDown,
+        kProgramLookingForTheWorld,
+        kProgramGuerillaLove,
+        kProgramTumbleToThePower,
+        kProgramDoYourselfFavour,
+        kProgramPastIsPast,
+        kProgramYouAndOnlyYou,
+        kProgramSoulForce,
+        kProgramCount
+    };
+
     DistrhoPluginSoulForce();
 
 protected:

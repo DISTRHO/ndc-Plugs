@@ -66,12 +66,10 @@ void DistrhoPluginCycleShifter::initParameter(uint32_t index, Parameter& paramet
 
 void DistrhoPluginCycleShifter::initProgramName(uint32_t index, String& programName)
 {
-    switch(index)
-    {
-    case 0:
-        programName = "Default";
-        break;
-    }
+    if (index != 0)
+        return;
+
+    programName = "Default";
 }
 
 // -----------------------------------------------------------------------
@@ -105,13 +103,11 @@ void DistrhoPluginCycleShifter::setParameterValue(uint32_t index, float value)
 
 void DistrhoPluginCycleShifter::loadProgram(uint32_t index)
 {
-    switch(index)
-    {
-    case 0:
-        fNewCycleVolume = 1.0f;
-        fInputVolume    = 1.0f;
-        break;
-    }
+    if (index != 0)
+        return;
+
+    fNewCycleVolume = 1.0f;
+    fInputVolume    = 1.0f;
 }
 
 // -----------------------------------------------------------------------
