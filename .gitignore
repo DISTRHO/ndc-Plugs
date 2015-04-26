@@ -14,4 +14,5 @@
 bin/*-dssi/
 bin/*.lv2/
 bin/AmplitudeImposer
+bin/CycleShifter
 bin/SoulForce
