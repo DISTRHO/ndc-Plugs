@@ -114,7 +114,7 @@ void DistrhoPluginAmplitudeImposer::initParameter(uint32_t index, Parameter& par
 void DistrhoPluginAmplitudeImposer::initProgramName(uint32_t index, String& programName)
 {
     if (index != 0)
-        return
+        return;
 
     programName = "Default";
 }
@@ -151,7 +151,7 @@ void DistrhoPluginAmplitudeImposer::setParameterValue(uint32_t index, float valu
 void DistrhoPluginAmplitudeImposer::loadProgram(uint32_t index)
 {
     if (index != 0)
-        return
+        return;
 
     fDepth     = 1.0f;
     fThreshold = 0.5f;
