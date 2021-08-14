@@ -32,7 +32,7 @@ namespace Art = DistrhoArtworkSoulForce;
 // -----------------------------------------------------------------------
 
 DistrhoUISoulForce::DistrhoUISoulForce()
-    : UI(Art::backgroundWidth, Art::backgroundHeight),
+    : UI(Art::backgroundWidth, Art::backgroundHeight, true),
       fImgBackground(Art::backgroundData, Art::backgroundWidth, Art::backgroundHeight, kImageFormatBGR),
       fImgLedOff(Art::led_offData, Art::led_offWidth, Art::led_offHeight, kImageFormatBGR),
       fImgLedOn(Art::led_onData, Art::led_onWidth, Art::led_onHeight, kImageFormatBGR),
@@ -76,9 +76,6 @@ DistrhoUISoulForce::DistrhoUISoulForce()
 
     // set initial values
     programLoaded(0);
-
-    // automatically-scale
-    setGeometryConstraints(Art::backgroundWidth, Art::backgroundHeight, true, true);
 }
 
 // -----------------------------------------------------------------------

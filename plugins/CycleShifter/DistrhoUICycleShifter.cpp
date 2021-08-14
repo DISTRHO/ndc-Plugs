@@ -32,7 +32,7 @@ namespace Art = DistrhoArtworkCycleShifter;
 // -----------------------------------------------------------------------
 
 DistrhoUICycleShifter::DistrhoUICycleShifter()
-    : UI(Art::backWidth, Art::backHeight),
+    : UI(Art::backWidth, Art::backHeight, true),
       fImgBackground(Art::backData, Art::backWidth, Art::backHeight, kImageFormatGrayscale)
 {
     // sliders
@@ -54,9 +54,6 @@ DistrhoUICycleShifter::DistrhoUICycleShifter()
 
     // set initial values
     programLoaded(0);
-
-    // automatically-scale
-    setGeometryConstraints(Art::backWidth, Art::backHeight, true, true);
 }
 
 // -----------------------------------------------------------------------
