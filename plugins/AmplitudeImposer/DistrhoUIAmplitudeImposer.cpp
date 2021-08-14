@@ -1,7 +1,7 @@
 /*
  * DISTRHO AmplitudeImposer, a DPF'ied AmplitudeImposer.
  * Copyright (C) 2004 Niall Moody
- * Copyright (C) 2015 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2015-2021 Filipe Coelho <falktx@falktx.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -54,6 +54,9 @@ DistrhoUIAmplitudeImposer::DistrhoUIAmplitudeImposer()
 
     // set initial values
     programLoaded(0);
+
+    // automatically-scale
+    setGeometryConstraints(Art::backWidth, Art::backHeight, true, true);
 }
 
 // -----------------------------------------------------------------------
