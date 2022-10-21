@@ -197,10 +197,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Fix up Xcode
-        run: |
-          sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
-          sudo xcode-select -s "/Applications/Xcode_12.3.app"
       - name: Build macOS universal
         env:
           CFLAGS: -arch x86_64 -arch arm64 -DMAC_OS_X_VERSION_MAX_ALLOWED=MAC_OS_X_VERSION_10_12 -mmacosx-version-min=10.12 -mtune=generic -msse -msse2
@@ -395,4 +391,15 @@ jobs:
                     --track-origins=yes \
                     --suppressions=./dpf/utils/valgrind-dpf.supp \
                     /usr/lib/carla/carla-bridge-native vst3 ./bin/${p} "" 1>/dev/null; \
+            done
+      - name: Test CLAP plugins
+        run: |
+            for p in $(ls bin/ | grep clap); do \
+                env CARLA_BRIDGE_DUMMY=1 CARLA_BRIDGE_TESTING=native \
+                    valgrind \
+                    --error-exitcode=255 \
+                    --leak-check=full \
+                    --track-origins=yes \
+                    --suppressions=./dpf/utils/valgrind-dpf.supp \
+                    /usr/lib/carla/carla-bridge-native clap ./bin/${p} "" 1>/dev/null; \
             done
