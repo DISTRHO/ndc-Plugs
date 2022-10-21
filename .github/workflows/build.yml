@@ -44,10 +44,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-linux-arm64-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-linux-arm64-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
 
@@ -83,10 +83,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-linux-armhf-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-linux-armhf-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
 
@@ -120,10 +120,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-linux-i686-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-linux-i686-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
 
@@ -159,10 +159,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-linux-riscv64-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-linux-riscv64-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
 
@@ -184,15 +184,15 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-linux-x86_64-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-linux-x86_64-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
 
   macos-universal:
-    runs-on: macos-10.15
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@v3
         with:
@@ -212,10 +212,10 @@ jobs:
           ./dpf/utils/package-osx-bundles.sh
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-macOS-universal-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-macOS-universal-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             *-macOS.pkg
             bin/*
@@ -254,10 +254,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-win32-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-win32-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
             !bin/*-ladspa.dll
@@ -291,10 +291,10 @@ jobs:
           make WITH_LTO=true -j $(nproc)
       - name: Set sha8
         id: slug
-        run: echo "::set-output name=sha8::$(echo ${{ github.sha }} | cut -c1-8)"
+        run: echo "SHA8=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}-win64-${{ github.event.pull_request.number || steps.slug.outputs.sha8 }}
+          name: ${{ github.event.repository.name }}-win64-${{ github.event.pull_request.number || env.SHA8 }}
           path: |
             bin/*
             !bin/*-ladspa.dll
